@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>學生自我評測系統</title>
+<style>
+  html, body { background-color: #fbfbfa; margin: 0; padding: 0; width: 100%; -webkit-text-size-adjust: 100%; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: #37352f; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; padding: 16px 12px; }
+  .quiz-title { font-size: 22px; font-weight: 700; margin: 15px 0; text-align: center; width: 100%; }
+  .quiz-container { width: 100%; max-width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; }
+  .card { background: #ffffff; border: 1px solid #e9e9e6; border-radius: 12px; padding: 20px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); box-sizing: border-box; width: 100%; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 4px; margin-bottom: 12px; background: #e3e2e0; color: #5f5e5b; }
+  .badge.multi { background: #eae6ff; color: #4022b8; }
+  .question { font-size: 16px; font-weight: 600; line-height: 1.5; margin-bottom: 16px; word-break: break-all; }
+  .options { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+  .option-btn { width: 100%; text-align: left; background: #ffffff; border: 1px solid #e9e9e6; padding: 14px 12px; border-radius: 8px; cursor: pointer; font-size: 15px; transition: all 0.15s; color: #37352f; outline: none; box-sizing: border-box; -webkit-tap-highlight-color: transparent; line-height: 1.4; }
+  .option-btn.selected { border-color: #2f54eb; background: #f0f5ff; color: #1d39c4; font-weight: 500; }
+  .option-btn.correct { background-color: #e2f6ea !important; border-color: #52c41a !important; color: #135200; font-weight: bold; }
+  .option-btn.wrong { background-color: #ffeef0 !important; border-color: #ff4d4f !important; color: #a8071a; }
+  .submit-btn { width: 100%; background: #2383e2; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 14px; transition: background 0.15s; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  .explanation { display: none; margin-top: 16px; padding: 14px; background: #f7f6f3; border-left: 4px solid #2383e2; border-radius: 4px; font-size: 14px; line-height: 1.6; word-break: break-all; }
+</style>
+</head>
+<body>
+<div class="quiz-title">📝 學生自我評測隨堂考</div>
+<div class="quiz-container">
+
+  <div class="card">
+    <span class="badge ">單選題</span>
+    <div class="question">Q1. 下列有關觀念架構之敘述，何者錯誤？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="selectSingle(this)">A. 觀念架構可協助制定未來及檢討現有之國際財務報導準則</button>
+      <button class="option-btn"  onclick="selectSingle(this)">B. 觀念架構可協助準則制定機構制定準則</button>
+      <button class="option-btn"  onclick="selectSingle(this)">C. 國際財務報導準則之規定牴觸觀念架構的內容時，以觀念架構的內容為優先</button>
+      <button class="option-btn"  onclick="selectSingle(this)">D. 觀念架構會隨時間經過而修訂</button>
+    </div>
+    <button class="submit-btn" onclick="checkAnswer(this)">確認提交此題</button>
+    <div class="explanation"><strong>💡 本題出處 / 解析：</strong><br>111會計師</div>
+  </div>
+  <div class="card">
+    <span class="badge ">單選題</span>
+    <div class="question">Q2. 「財務報導之觀念架構」說明一般用途財務報導之目的，係提供現在及潛在之投資人與債權人於作成「決策」時所需之有用財務資訊。下列有關一般用途財務報導目的之敘述，何者錯誤？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="selectSingle(this)">A. 此處所提到的「決策」，包含提供或結清貸款及其他形式之授信，與買入、賣出或持有權益及債務工具</button>
+      <button class="option-btn"  onclick="selectSingle(this)">B. 依一般用途財務報導之目的，所提供的財務資訊，已經包含投資人與債權人所需之全部資訊</button>
+      <button class="option-btn"  onclick="selectSingle(this)">C. 投資人與債權人在進行決策時，需要企業之經濟資源、請求權與其變動等財務資訊，來評估企業之未來現金流量</button>
+      <button class="option-btn"  onclick="selectSingle(this)">D. 對公司之管理階層行使表決或影響之權利，也包含在此處所提到的「決策」中，這有助強化管理階層的課責性</button>
+    </div>
+    <button class="submit-btn" onclick="checkAnswer(this)">確認提交此題</button>
+    <div class="explanation"><strong>💡 本題出處 / 解析：</strong><br>111地特中會</div>
+  </div>
+  <div class="card">
+    <span class="badge ">單選題</span>
+    <div class="question">Q3. 下列有關財務報導之「觀念架構」的敘述，內容正確者有幾項？(1)當「觀念架構」與特定國際財務報導準則相衝突時，企業應優先適用「觀念架構」(2)「觀念架構」可協助國際會計準則理事會（IASB）制定國際財務報導準則（IFRS）(3)當特定交易無準則可適用時，「觀念架構」可協助財務報導之編製者訂定一致之會計政策(4)當財務報表已遵循國際財務報導準則時，「觀念架構」可協助財務報表使用者了解及解讀財務報表之資訊(5)「觀念架構」可協助查核人員針對財務報表是否遵循國際財務報導準則出具意見</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="selectSingle(this)">A. 二項</button>
+      <button class="option-btn"  onclick="selectSingle(this)">B. 三項</button>
+      <button class="option-btn"  onclick="selectSingle(this)">C. 四項</button>
+      <button class="option-btn"  onclick="selectSingle(this)">D. 五項</button>
+    </div>
+    <button class="submit-btn" onclick="checkAnswer(this)">確認提交此題</button>
+    <div class="explanation"><strong>💡 本題出處 / 解析：</strong><br>112鐵路特考中會</div>
+  </div>
+  <div class="card">
+    <span class="badge ">單選題</span>
+    <div class="question">Q4. X5年，甲公司展開火星殖民的業務，其會計人員面對一連串地球上未曾發生過的交易，無某一特定國際財務報導準則明確可適用於此交易。有關甲公司管理當局運用其判斷以訂定會計政策時，下列敘述何者錯誤？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="selectSingle(this)">A. 會計政策必須對使用者經濟決策之需求具攸關性</button>
+      <button class="option-btn"  onclick="selectSingle(this)">B. 管理當局優先參考國際財務報導準則對處理類似及相關議題之規定</button>
+      <button class="option-btn"  onclick="selectSingle(this)">C. 管理當局優先參考財務報導之觀念架構中，對資產、負債、收益及費損之定義、認列條件及衡量觀念</button>
+      <button class="option-btn"  onclick="selectSingle(this)">D. 在不與國際財務報導準則及財務報導之觀念架構相關規定衝突之範圍內，管理當局可以考量其他準則制定機構（須採用類似觀念架構制定會計準則）所發布之最新公報</button>
+    </div>
+    <button class="submit-btn" onclick="checkAnswer(this)">確認提交此題</button>
+    <div class="explanation"><strong>💡 本題出處 / 解析：</strong><br>113會計師</div>
+  </div>
+  <div class="card">
+    <span class="badge ">單選題</span>
+    <div class="question">Q5. 甲公司於X9年7月1日以$20億取得專利權A。專利權A的法定保護年限剩餘15年，但甲公司預估專利權A的經濟耐用年限僅有10年。甲公司於X9年12月31日財務報導日以直線法攤銷該專利權A，攤銷年限設為15年。試問，其違反下列何種資訊品質特性或原則？</div>
+    <div class="options">
+      <button class="option-btn" data-correct="true" onclick="selectSingle(this)">A. 重大性</button>
+      <button class="option-btn"  onclick="selectSingle(this)">B. 時效性</button>
+      <button class="option-btn"  onclick="selectSingle(this)">C. 忠實表述</button>
+      <button class="option-btn"  onclick="selectSingle(this)">D. 可比性</button>
+    </div>
+    <button class="submit-btn" onclick="checkAnswer(this)">確認提交此題</button>
+    <div class="explanation"><strong>💡 本題出處 / 解析：</strong><br>110薦任升等</div>
+  </div>
+</div>
+<script>
+function selectSingle(btn) { const options = btn.parentElement.querySelectorAll('.option-btn'); options.forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); }
+function selectMulti(btn) { btn.classList.toggle('selected'); }
+function checkAnswer(submitBtn) { 
+  const card = submitBtn.closest('.card'); 
+  const buttons = card.querySelectorAll('.option-btn'); 
+  const exp = card.querySelector('.explanation'); 
+  const selectedButtons = card.querySelectorAll('.option-btn.selected'); 
+  
+  if (selectedButtons.length === 0) { 
+    submitBtn.innerText = "⚠️ 請先選擇答案再提交喔！"; 
+    submitBtn.style.background = "#ff4d4f";
+    setTimeout(() => { submitBtn.innerText = "確認提交此題"; submitBtn.style.background = "#2383e2"; }, 2000);
+    return; 
+  } 
+  
+  buttons.forEach(b => b.disabled = true); 
+  submitBtn.style.display = 'none'; 
+  
+  let isCorrect = true; 
+  buttons.forEach(b => { 
+    const isBtnCorrect = b.getAttribute('data-correct') === 'true'; 
+    const isBtnSelected = b.classList.contains('selected'); 
+    if (isBtnCorrect) b.classList.add('correct'); 
+    if (isBtnSelected && !isBtnCorrect) { b.classList.add('wrong'); isCorrect = false; } 
+    if (!isBtnSelected && isBtnCorrect) isCorrect = false; 
+  }); 
+  exp.style.display = 'block'; 
+}
+</script>
+</body>
+</html>
