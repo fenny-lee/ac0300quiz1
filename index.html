@@ -9,7 +9,7 @@
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: #37352f; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; padding: 16px 12px; }
   .quiz-title { font-size: 22px; font-weight: 700; margin: 15px 0; text-align: center; width: 100%; }
   .quiz-container { width: 100%; max-width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; }
-  .card { background: #ffffff; border: 1px solid #e9e9e6; border-radius: 12px; padding: 20px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); box-sizing: border-box; width: 100%; }
+  .card { background: #ffffff; border: 1px solid #e9e9e6; border-radius: 12px; padding: 20px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); box-sizing: border-box; width: 100%; position: relative; }
   .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 4px; margin-bottom: 12px; background: #e3e2e0; color: #5f5e5b; }
   .badge.multi { background: #eae6ff; color: #4022b8; }
   .question { font-size: 16px; font-weight: 600; line-height: 1.5; margin-bottom: 16px; word-break: break-all; }
@@ -20,12 +20,13 @@
   .option-btn.wrong { background-color: #ffeef0 !important; border-color: #ff4d4f !important; color: #a8071a; }
   .submit-btn { width: 100%; background: #2383e2; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 14px; transition: background 0.15s; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   .explanation { display: none; margin-top: 16px; padding: 14px; background: #f7f6f3; border-left: 4px solid #2383e2; border-radius: 4px; font-size: 14px; line-height: 1.6; word-break: break-all; }
+  .close-btn { width: 100%; border: none; padding: 15px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); -webkit-tap-highlight-color: transparent; background: #8c8c8c; color: white; margin-bottom: 10px; }
+  .copyright { font-size: 12px; color: #8c8c8c; text-align: center; margin: 25px 0 10px 0; width: 100%; font-weight: 400; letter-spacing: 0.5px; }
 </style>
 </head>
 <body>
 <div class="quiz-title">📝 學生自我評測</div>
 <div class="quiz-container">
-
   <div class="card">
     <span class="badge ">單選題</span>
     <div class="question">Q1. 下列有關觀念架構之敘述，何者錯誤？  [111會計師]</div>
@@ -36,7 +37,7 @@
       <button class="option-btn"  onclick="selectSingle(this)">D. 觀念架構會隨時間經過而修訂</button>
     </div>
     <button class="submit-btn" onclick="checkAnswer(this)">確認提交此題</button>
-    <div class="explanation"><strong>💡 本題解析：</strong><br>營業利益 = $580,000,<br>處分損失 = $720,000–$1,080,000=-$360,000<BR>評價損失 = $350,000 –$500,000 = –$150,000<BR>綜合損益表中停業單位損益 
+    <div class="explanation"><strong>💡 解析：</strong><br>營業利益 = $580,000,<br>處分損失 = $720,000–$1,080,000=-$360,000<BR>評價損失 = $350,000 –$500,000 = –$150,000<BR>綜合損益表中停業單位損益 
 = ($580,000 –$360,000–$150,000)x(1–25%) = $52,500</div>
   </div>
   <div class="card">
@@ -49,7 +50,7 @@
       <button class="option-btn"  onclick="selectSingle(this)">D. 對公司之管理階層行使表決或影響之權利，也包含在此處所提到的「決策」中，這有助強化管理階層的課責性</button>
     </div>
     <button class="submit-btn" onclick="checkAnswer(this)">確認提交此題</button>
-    <div class="explanation"><strong>💡 本題解析：</strong><br></div>
+    <div class="explanation"><strong>💡 解析：</strong><br>111地特中會</div>
   </div>
   <div class="card">
     <span class="badge ">單選題</span>
@@ -61,7 +62,7 @@
       <button class="option-btn"  onclick="selectSingle(this)">D. 五項</button>
     </div>
     <button class="submit-btn" onclick="checkAnswer(this)">確認提交此題</button>
-    <div class="explanation"><strong>💡 本題解析：</strong><br></div>
+    <div class="explanation"><strong>💡 解析：</strong><br>112鐵路特考中會</div>
   </div>
   <div class="card">
     <span class="badge ">單選題</span>
@@ -73,11 +74,11 @@
       <button class="option-btn"  onclick="selectSingle(this)">D. 在不與國際財務報導準則及財務報導之觀念架構相關規定衝突之範圍內，管理當局可以考量其他準則制定機構（須採用類似觀念架構制定會計準則）所發布之最新公報</button>
     </div>
     <button class="submit-btn" onclick="checkAnswer(this)">確認提交此題</button>
-    <div class="explanation"><strong>💡 本題解析：</strong><br></div>
+    <div class="explanation"><strong>💡 解析：</strong><br>113會計師</div>
   </div>
   <div class="card">
     <span class="badge ">單選題</span>
-    <div class="question">Q5. 甲公司於X9年7月1日以$20億取得專利權A。專利權A的法定保護年限剩餘15年，但甲公司預估專利權A的經濟耐用年限僅有10年。甲公司於X9年12月31日財務報導日以直線法攤銷該專利權A，攤銷年限設為15年。試問，其違反下列何種資訊品質特性或原則？  [110薦任升等]</div>
+    <div class="question">Q5. 甲公司於X9年7月1日以$20億取得專利權A。專利權A的法定保護年限剩餘15年，但甲公司預估專利權A的經濟耐用年限僅有10年。甲公司於X9年12月31日財務報導日以直線法攤銷該專利權A，攤銷年限設為15年。試問，其違反下?何種資訊品質特性或原則？  [110薦任升等]</div>
     <div class="options">
       <button class="option-btn" data-correct="true" onclick="selectSingle(this)">A. 重大性</button>
       <button class="option-btn"  onclick="selectSingle(this)">B. 時效性</button>
@@ -85,41 +86,34 @@
       <button class="option-btn"  onclick="selectSingle(this)">D. 可比性</button>
     </div>
     <button class="submit-btn" onclick="checkAnswer(this)">確認提交此題</button>
-    <div class="explanation"><strong>💡 本題解析：</strong><br></div>
+    <div class="explanation"><strong>💡 解析：</strong><br>110薦任升等</div>
   </div>
+  <button class="close-btn" onclick="closePage()">❌ 關閉本頁</button>
+  <div class="copyright">© 滄海圖書資訊股份有限公司</div>
 </div>
 <script>
 function selectSingle(btn) { const options = btn.parentElement.querySelectorAll('.option-btn'); options.forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); }
 function selectMulti(btn) { btn.classList.toggle('selected'); }
 function checkAnswer(submitBtn) { 
-  const card = submitBtn.closest('.card'); 
-  const buttons = card.querySelectorAll('.option-btn'); 
-  const exp = card.querySelector('.explanation'); 
-  const selectedButtons = card.querySelectorAll('.option-btn.selected'); 
-  
+  const card = submitBtn.closest('.card'); const buttons = card.querySelectorAll('.option-btn'); const exp = card.querySelector('.explanation'); const selectedButtons = card.querySelectorAll('.option-btn.selected'); 
   if (selectedButtons.length === 0) { 
-    submitBtn.innerText = "⚠️ 請先選擇答案再提交喔！"; 
-    submitBtn.style.background = "#ff4d4f";
-    setTimeout(() => { submitBtn.innerText = "確認提交此題"; submitBtn.style.background = "#2383e2"; }, 2000);
-    return; 
+    submitBtn.innerText = "⚠️ 請先選擇答案再提交喔！"; submitBtn.style.background = "#ff4d4f";
+    setTimeout(() => { submitBtn.innerText = "確認提交此題"; submitBtn.style.background = "#2383e2"; }, 2000); return; 
   } 
-  
-  buttons.forEach(b => b.disabled = true); 
-  submitBtn.style.display = 'none'; 
-  
-  let isCorrect = true; 
+  buttons.forEach(b => b.disabled = true); submitBtn.style.display = 'none'; 
   buttons.forEach(b => { 
-    const isBtnCorrect = b.getAttribute('data-correct') === 'true'; 
-    const isBtnSelected = b.classList.contains('selected'); 
+    const isBtnCorrect = b.getAttribute('data-correct') === 'true'; const isBtnSelected = b.classList.contains('selected'); 
     if (isBtnCorrect) b.classList.add('correct'); 
-    if (isBtnSelected && !isBtnCorrect) { b.classList.add('wrong'); isCorrect = false; } 
-    if (!isBtnSelected && isBtnCorrect) isCorrect = false; 
+    if (isBtnSelected && !isBtnCorrect) b.classList.add('wrong'); 
   }); 
   exp.style.display = 'block'; 
 }
+function closePage() {
+  if (confirm("確認要關閉此測驗視窗嗎？")) {
+    window.close();
+    setTimeout(() => { alert("請直接關閉或切換此瀏覽器分頁。"); }, 300);
+  }
+}
 </script>
-
-© 滄海圖書資訊股份有限公司
-
 </body>
 </html>
